@@ -10,7 +10,7 @@ packer {
 variable "region" { default = "us-east-1" }
 
 source "amazon-ebs" "windows" {
-  ami_name       = "Windows {{timestamp}}"
+  ami_name       = "windows_{{timestamp}}"
   communicator   = "winrm"
   instance_type  = "t2.medium"
   region         = var.region
@@ -33,9 +33,7 @@ source "amazon-ebs" "windows" {
 }
 
 build {
-  sources = [
-    "source.amazon-ebs.windows",
-  ]
+  sources = ["source.amazon-ebs.windows"]
 
   provisioner "ansible" {
     playbook_file    = "./windows_playbook.yml"
