@@ -1,0 +1,10 @@
+---
+# playbook.yml
+- name: 'Provision Image'
+  hosts: default
+
+  tasks:
+    - name: Touch a file (creates if not present, updates modification time if present)
+      win_file:
+        path: C:\foo.conf
+        state: touch
